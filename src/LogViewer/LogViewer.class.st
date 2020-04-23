@@ -1,3 +1,16 @@
+"
+I am a general purpose viewer of log file entries.
+
+I accumulate an ==OrderedCollection== of items. An item is any object that uses ==TLogViewerItem==. See comments on that trait for more info.
+
+Example:
+
+viewer := LogViewer new.
+items := ('/path/to/file.log' asFileReference contents splitOn: Character lf) collect: [:each | XCGLogItem fromString: each].
+viewer items addAll: items.
+viewer inspect.
+
+"
 Class {
 	#name : #LogViewer,
 	#superclass : #Object,

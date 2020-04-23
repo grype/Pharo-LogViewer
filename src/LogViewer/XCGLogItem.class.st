@@ -1,10 +1,20 @@
+"
+I represent a log entry of this format:
+
+""2020-04-21 17:10:37.046 [Debug] [File.swift:123] function(_:) Some message""
+"
 Class {
 	#name : #XCGLogItem,
 	#superclass : #Object,
 	#traits : 'TLogViewerItem + TLogViewerDatedItem + TLogViewerFileSourcedItem + TLogViewerFunctionCallItem + TLogViewerLeveledItem + TLogViewerMessageItem',
 	#classTraits : 'TLogViewerItem classTrait + TLogViewerDatedItem classTrait + TLogViewerFileSourcedItem classTrait + TLogViewerFunctionCallItem classTrait + TLogViewerLeveledItem classTrait + TLogViewerMessageItem classTrait',
 	#instVars : [
-		'foo'
+		'date',
+		'fileName',
+		'lineNumber',
+		'functionName',
+		'level',
+		'message'
 	],
 	#category : #LogViewer
 }
@@ -28,11 +38,6 @@ XCGLogItem >> = anObject [
 		and: [ lineNumber = anObject lineNumber ]
 ]
 
-{ #category : #accessing }
-XCGLogItem >> foo [
-	^ foo
-]
-
 { #category : #comparing }
 XCGLogItem >> hash [
 	"Answer an integer value that is related to the identity of the receiver."
@@ -42,7 +47,7 @@ XCGLogItem >> hash [
 
 { #category : #parsing }
 XCGLogItem >> parseFromString: aString [
-	"2020-04-21 17:10:37.046 [Debug] [File.swift:123] function(_:) > Some message"
+	"2020-04-21 17:10:37.046 [Debug] [File.swift:123] function(_:) Some message"
 
 	| stream |
 
